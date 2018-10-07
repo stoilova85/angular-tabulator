@@ -1,27 +1,46 @@
-# Tabulator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Steps to use *Tabulator* inside an Angular application
 
-## Development server
+# install the tabulator modules (pure js)
+npm install tabulator-tables --save
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# In a  Angular-cli project, modify the angular.json file
+# to add the style file and the js file
+"styles": [
+              "src/styles.css",
+              "./node_modules/tabulator-tables/dist/css/tabulator.min.css"
+        ],
+"scripts": [ "./node_modules/tabulator-tables/dist/js/tabulator.min.js"]
 
-## Code scaffolding
+# in a component, declar a var
+declare var Tabulator: any;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# and use it like in tabulator documentation
+# in a ngOnInit function (not a constructor)
+ var table = new Tabulator("#exampletable", {
+      columns:[
+      {title:"Name", field:"name"},
+      {title:"Progress", field:"progress", sorter:"number"},
+      {title:"Gender", field:"gender"},
+      {title:"Rating", field:"rating"},
+      {title:"Favourite Color", field:"col"},
+      {title:"Date Of Birth", field:"dob", align:"center"},
+      ],movableColumns: true, movableRows: true, //enable user movable rows
+      selectable : true
+  });
+  table.setData([
+    {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+    {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+    {id:3, name:"Christine Lobowski", age:"42", height:0, col:"green", dob:"22/05/1982", cheese:"true"},
+    {id:4, name:"Brendon Philips", age:"125", gender:"male", height:1, col:"orange", dob:"01/08/1980"},
+    {id:5, name:"Margret Marmajuke", age:"16", gender:"female", height:5, col:"yellow", dob:"31/01/1999"},
+    {id:6, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+    {id:7, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+    {id:8, name:"Christine Lobowski", age:"42", height:0, col:"green", dob:"22/05/1982", cheese:"true"},
+    {id:9, name:"Brendon Philips", age:"125", gender:"male", height:1, col:"orange", dob:"01/08/1980"},
+    {id:10, name:"Margret Marmajuke", age:"16", gender:"female", height:5, col:"yellow", dob:"31/01/1999"},
+  ]);
+}
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# in the template 
+<div id="exampletable" > </div>
