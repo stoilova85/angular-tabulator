@@ -17,7 +17,7 @@ export class AppComponent  implements OnInit{
       {title:"Rating", field:"rating"},
       {title:"Favourite Color", field:"col"},
       {title:"Date Of Birth", field:"dob", align:"center"},
-      ],
+      ],movableColumns: true
   });
   table.setData([
     {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
